@@ -5,10 +5,7 @@ import { firestore, auth, serverTimestamp } from "../../lib/firebase";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import {
-	useDocumentData,
-	useDocumentDataOnce,
-} from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
