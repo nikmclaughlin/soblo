@@ -16,7 +16,7 @@ export default function PostFeed({ posts, admin }) {
 		: null;
 }
 
-function PostItem({ post }) {
+function PostItem({ post, admin = false }) {
 	const wordCount = post?.content.trim().split(/\s+/g).length;
 	const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
@@ -36,6 +36,22 @@ function PostItem({ post }) {
 				</span>
 				<span>💖 {post.heartCount} Hearts</span>
 			</footer>
+
+			{admin && (
+				<>
+					<Link href={`/admin/${post.slug}`}>
+						<h3>
+							<button className="btn-blue">Edit</button>
+						</h3>
+					</Link>
+
+					{post.published ? (
+						<p className="text-success">Live</p>
+					) : (
+						<p className="text-danger">Draft</p>
+					)}
+				</>
+			)}
 		</div>
 	);
 }

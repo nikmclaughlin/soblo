@@ -10,6 +10,7 @@ import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { useForm, useFormState } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import Image from "next/image";
 import toast from "react-hot-toast";
 
 export default function AdminPostEdit({}) {
@@ -109,6 +110,23 @@ function PostForm({ defaultValues, postRef, preview }) {
 						required: { value: true, message: "content is required" },
 					})}
 				></textarea>
+				<div>
+					<Image
+						src="/markdown.svg"
+						alt="markdown logo"
+						height={30}
+						width={30}
+					/>
+					<span>
+						<strong>
+							{" "}
+							via{" "}
+							<Link href="https://commonmark.org/help/" target="_blank">
+								CommonMark
+							</Link>
+						</strong>
+					</span>
+				</div>
 
 				{errors.content && (
 					<p className="text-danger">{errors.content.message}</p>
