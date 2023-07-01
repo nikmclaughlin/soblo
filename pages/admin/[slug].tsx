@@ -1,12 +1,13 @@
 import styles from "../../styles/Admin.module.css";
 import AuthCheck from "../../components/AuthCheck";
+import ImageUploader from "../../components/ImageUploader";
 import { firestore, auth, serverTimestamp } from "../../lib/firebase";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
 
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import toast from "react-hot-toast";
@@ -65,10 +66,19 @@ function PostManager() {
 }
 
 function PostForm({ defaultValues, postRef, preview }) {
-	const { register, handleSubmit, reset, watch } = useForm({
+	const {
+		register,
+		handleSubmit,
+		reset,
+		watch,
+		formState: { errors },
+		control,
+	} = useForm({
 		defaultValues,
 		mode: "onChange",
 	});
+
+	const { isValid, isDirty } = useFormState({ control });
 
 	const updatePost = async ({ content, published }) => {
 		await postRef.update({
@@ -91,7 +101,18 @@ function PostForm({ defaultValues, postRef, preview }) {
 			)}
 
 			<div className={preview ? styles.hidden : styles.controls}>
-				<textarea {...register("content")}></textarea>
+				<ImageUploader />
+				<textarea
+					{...register("content", {
+						maxLength: { value: 20000, message: "content is too long" },
+						minLength: { value: 10, message: "content is too short" },
+						required: { value: true, message: "content is required" },
+					})}
+				></textarea>
+
+				{errors.content && (
+					<p className="text-danger">{errors.content.message}</p>
+				)}
 
 				<fieldset>
 					<input
@@ -102,7 +123,11 @@ function PostForm({ defaultValues, postRef, preview }) {
 					<label>Published</label>
 				</fieldset>
 
-				<button type="submit" className="btn-green">
+				<button
+					type="submit"
+					className="btn-green"
+					disabled={!isDirty || !isValid}
+				>
 					Save Changes
 				</button>
 			</div>
