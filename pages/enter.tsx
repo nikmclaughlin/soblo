@@ -43,4 +43,6 @@ function SignOutButton() {
 	return <button onClick={() => auth.signOut()}>Sign Out</button>;
 }
 
-function UsernameForm() {}
+function UsernameForm() {
+	return <h2>Username Form</h2>;
+}
