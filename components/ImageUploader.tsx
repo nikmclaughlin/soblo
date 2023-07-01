@@ -9,6 +9,7 @@ export default function ImageUploader() {
 
 	const uploadFile = async (e) => {
 		const file = Array.from(e.target.files)[0];
+		// @ts-ignore
 		const extension = file.type.split("/")[1];
 
 		// make a reference to the file location in firestore
