@@ -6,6 +6,13 @@ export async function getServerSideProps({ query }) {
 	const { username } = query;
 	const userDoc = await getUserWithUsername(username);
 
+	// 404 if user not found
+	if (!userDoc) {
+		return {
+			notFound: true,
+		};
+	}
+
 	let user = null;
 	let posts = null;
 
