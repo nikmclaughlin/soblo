@@ -129,7 +129,7 @@ function PostForm({ defaultValues, postRef, preview }) {
 				</div>
 
 				{errors.content && (
-					<p className="text-danger">{errors.content.message}</p>
+					<p className="text-danger">{errors.content.message.toString()}</p>
 				)}
 
 				<fieldset>

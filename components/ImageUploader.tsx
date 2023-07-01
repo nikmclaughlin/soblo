@@ -8,8 +8,7 @@ export default function ImageUploader() {
 	const [downloadURL, setDownloadURL] = useState(null);
 
 	const uploadFile = async (e) => {
-		const file = Array.from(e.target.files)[0];
-		// @ts-ignore
+		const file = Array.from(e.target.files)[0] as File;
 		const extension = file.type.split("/")[1];
 
 		// make a reference to the file location in firestore
@@ -23,10 +22,9 @@ export default function ImageUploader() {
 
 		// update progress during upload
 		task.on(STATE_CHANGED, (snapshot) => {
-			const pct = (
-				(snapshot.bytesTransferred / snapshot.totalBytes) *
-				100
-			).toFixed(0);
+			const pct = Number(
+				((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(0)
+			);
 			setProgress(pct);
 
 			// handle completed upload
