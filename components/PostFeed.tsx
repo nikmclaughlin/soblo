@@ -21,14 +21,14 @@ function PostItem({ post }) {
 	const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
 	return (
-		<div className="card">
+        <div className="card">
 			<Link href={`/${post.username}`}>
-				<a>
-					<strong>By @{post.username}</strong>
-				</a>
-			</Link>
 
-			<Link href={`/${post.username}/${post.slug}`}>
+                <strong>By @{post.username}</strong>
+
+            </Link>
+
+			<Link href={`/${post.username}/${post.slug}`} legacyBehavior>
 				<h2>
 					<a>{post.title}</a>
 				</h2>
@@ -41,5 +41,5 @@ function PostItem({ post }) {
 				<span>💖 {post.heartCount} Hearts</span>
 			</footer>
 		</div>
-	);
+    );
 }

@@ -7,10 +7,10 @@ export default function Navbar({}) {
 	const { user, username } = useContext(UserContext);
 
 	return (
-		<nav className="navbar">
+        <nav className="navbar">
 			<ul>
 				<li>
-					<Link href="/">
+					<Link href="/" legacyBehavior>
 						<button className="btn-logo">SoBlo</button>
 					</Link>
 				</li>
@@ -18,12 +18,12 @@ export default function Navbar({}) {
 				{username && (
 					<>
 						<li className="push-left">
-							<Link href="/admin">
+							<Link href="/admin" legacyBehavior>
 								<button className="btn-blue">Write Posts</button>
 							</Link>
 						</li>
 						<li>
-							<Link href={`/${username}`}>
+							<Link href={`/${username}`} legacyBehavior>
 								<Image
 									src={user?.photoURL}
 									alt="Your profile pic!"
@@ -37,12 +37,12 @@ export default function Navbar({}) {
 				{/* end signed in user nav */}
 				{/* guest user nav */}
 				{!username && (
-					<Link href="/enter">
+					<Link href="/enter" legacyBehavior>
 						<button className="btn-blue">Log in</button>
 					</Link>
 				)}
 				{/* end guest user nav */}
 			</ul>
 		</nav>
-	);
+    );
 }
