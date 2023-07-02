@@ -5,15 +5,15 @@ export default function UserProfile({ user }) {
 		<div className="box-center">
 			<Image
 				className="card-img-center"
-				src={user.photoURL}
+				src={user?.photoURL}
 				alt="user's profile pic"
 				width={125}
 				height={125}
 			/>
 			<p>
-				<i>@{user.username}</i>
+				<i>@{user?.username}</i>
 			</p>
-			<h1>{user.displayName}</h1>
+			<h1>{user?.displayName}</h1>
 		</div>
 	);
 }
