@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Router from "next/router";
 
 export default function MetaTags({
-	title = "A SoBlo Post",
+	title = "A SoBlo Page",
 	description = "Come read on SoBlo!",
 	image = "/favicon.ico",
 	path = "/",

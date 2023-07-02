@@ -7,7 +7,7 @@ export default function Navbar({}) {
 	const { user, username } = useContext(UserContext);
 
 	return (
-        <nav className="navbar">
+		<nav className="navbar">
 			<ul>
 				<li>
 					<Link href="/" legacyBehavior>
@@ -19,7 +19,7 @@ export default function Navbar({}) {
 					<>
 						<li className="push-left">
 							<Link href="/admin" legacyBehavior>
-								<button className="btn-blue">Write Posts</button>
+								<button className="btn-blue">📝Write</button>
 							</Link>
 						</li>
 						<li>
@@ -27,8 +27,8 @@ export default function Navbar({}) {
 								<Image
 									src={user?.photoURL}
 									alt="Your profile pic!"
-									width={100}
-									height={100}
+									width={50}
+									height={50}
 								/>
 							</Link>
 						</li>
@@ -44,5 +44,5 @@ export default function Navbar({}) {
 				{/* end guest user nav */}
 			</ul>
 		</nav>
-    );
+	);
 }

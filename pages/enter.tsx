@@ -85,7 +85,7 @@ function UsernameForm() {
 			if (username.length >= 3) {
 				const ref = firestore.doc(`usernames/${username}`);
 				const { exists } = await ref.get();
-				console.log("Firestore read executed!");
+				// console.log("Firestore read executed!");
 				setIsValid(!exists);
 				setLoading(false);
 			}
