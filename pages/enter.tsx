@@ -141,11 +141,7 @@ function UsernameForm() {
 
 	function UsernameMessage({ username, isValid, loading }) {
 		if (loading) {
-			return (
-				<Loader show={loading}>
-					<p>Checking...</p>
-				</Loader>
-			);
+			return <Loader show={loading} />;
 		} else if (isValid) {
 			return <p className="text-success">{username} is available!</p>;
 		} else if (username && !isValid) {

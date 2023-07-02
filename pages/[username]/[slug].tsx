@@ -46,7 +46,7 @@ export async function getStaticPaths() {
 
 export default function PostPage(props) {
 	const postRef = firestore.doc(props.path);
-	const [realtimePost] = useDocumentData(postRef);
+	const [realtimePost] = useDocumentData(postRef as any);
 
 	const post = realtimePost || props.post;
 

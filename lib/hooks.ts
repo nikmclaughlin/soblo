@@ -4,7 +4,7 @@ import { auth, firestore } from "../lib/firebase";
 
 export function useUserData(){
 
-	const [user] = useAuthState(auth);
+	const [user] = useAuthState(auth as any);
 	const [username, setUsername] = useState(null);
 
 	useEffect(() => {

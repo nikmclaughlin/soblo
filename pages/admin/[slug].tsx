@@ -12,6 +12,7 @@ import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { DocumentReference } from "firebase/firestore";
 
 export default function AdminPostEdit({}) {
 	return (
@@ -33,8 +34,8 @@ function PostManager() {
 		.collection("users")
 		.doc(auth.currentUser.uid)
 		.collection("posts")
-		.doc(slug);
-	const [post] = useDocumentDataOnce(postRef);
+		.doc(slug.toString());
+	const [post] = useDocumentDataOnce(postRef as any);
 
 	return (
 		<main className={styles.container}>
