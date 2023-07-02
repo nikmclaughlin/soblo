@@ -6,6 +6,7 @@ import { firestore, auth, serverTimestamp } from "../../lib/firebase";
 
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { useCollection } from "react-firebase-hooks/firestore";
 import kebabCase from "lodash.kebabcase";
@@ -15,6 +16,9 @@ export default function AdminPostsPage({}) {
 	return (
 		<main>
 			<AuthCheck>
+				<Link href="#createNewPost">
+					<button>Create New Post</button>
+				</Link>
 				<PostList />
 				<CreateNewPost />
 			</AuthCheck>
@@ -79,7 +83,7 @@ function CreateNewPost() {
 	};
 
 	return (
-		<form onSubmit={createPost}>
+		<form onSubmit={createPost} id="createNewPost">
 			<input
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
