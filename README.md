@@ -1,4 +1,4 @@
-# SoBlo: The Social Blogging App
+# 👥 SoBlo: The Social Blogging App
 
 Write some posts and invite your friends!
 
