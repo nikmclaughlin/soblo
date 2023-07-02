@@ -2,16 +2,12 @@
 
 Write some posts and invite your friends!
 
----
-
 ## Dev Features
 
 - User Auth
 - Hybrid rendering (SSG, SSR, ISR, & Client)
 - User-created content & file upload
 - Secure, realtime database CRUD
-
----
 
 ## Built With
 
