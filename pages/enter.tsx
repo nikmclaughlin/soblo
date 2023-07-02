@@ -4,6 +4,7 @@ import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../lib/context";
 import Loader from "../components/Loader";
+import MetaTags from "../components/Metatags";
 
 export default function EnterPage({}) {
 	const { user, username } = useContext(UserContext);
@@ -16,6 +17,11 @@ export default function EnterPage({}) {
 	 */
 	return (
 		<main>
+			<MetaTags
+				title="SoBlo login"
+				description="Sign in to SoBlo"
+				path="/enter"
+			/>
 			{user ? (
 				!username ? (
 					<UsernameForm />

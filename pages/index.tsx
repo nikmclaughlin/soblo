@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 
 import { useState } from "react";
+import MetaTags from "../components/Metatags";
 
 // Maximum number of posts to query per page
 const LIMIT = 1;
@@ -59,6 +60,11 @@ export default function Home(props) {
 
 	return (
 		<main>
+			<MetaTags
+				title="SoBlo Home Page"
+				description="The Social Blogging site"
+				image="/favicon.ico"
+			/>
 			<PostFeed posts={posts} admin={false} />
 			{!loading && !postsEnd && (
 				<button onClick={getMorePosts}>Load more</button>

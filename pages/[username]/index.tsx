@@ -1,6 +1,7 @@
 import UserProfile from "../../components/UserProfile";
 import PostFeed from "../../components/PostFeed";
 import { getUserWithUsername, postToJSON } from "../../lib/firebase";
+import MetaTags from "../../components/Metatags";
 
 export async function getServerSideProps({ query }) {
 	const { username } = query;
@@ -35,6 +36,12 @@ export async function getServerSideProps({ query }) {
 export default function UserProfilePage({ user, posts }) {
 	return (
 		<main>
+			<MetaTags
+				title={`${user.username}'s Profile`}
+				description={`SoBlo profile for ${user.username}`}
+				image={user.photoURL}
+				path={`/${user.username}`}
+			/>
 			<UserProfile user={user} />
 			<PostFeed posts={posts} admin />
 		</main>
