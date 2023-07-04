@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { deleteFirebasePost } from "../lib/hooks";
 
 // type Post = {
 // 	content: string;
@@ -44,6 +45,18 @@ function PostItem({ post, admin = false }) {
 							<button className="btn-blue">Edit</button>
 						</h3>
 					</Link>
+
+					<button
+						className="btn-red"
+						onClick={(e) => {
+							e.preventDefault();
+							if (window.confirm(`Really delete ${post.title}?`)) {
+								deleteFirebasePost(post);
+							}
+						}}
+					>
+						Delete
+					</button>
 
 					{post.published ? (
 						<p className="text-success">Live</p>

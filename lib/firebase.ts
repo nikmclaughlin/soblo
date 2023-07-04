@@ -45,7 +45,7 @@ export async function getUserWithUsername(username: string){
  * Converts a firestore document to JSON
  * @param {DocumentSnapshot} doc
  */
-export function postToJSON(doc){
+export function postToJSON(doc: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>){
 	const data = doc.data();
 	return{
 		...data,
