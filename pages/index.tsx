@@ -1,16 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Loader from "../components/Loader";
 import PostFeed from "../components/PostFeed";
-import toast from "react-hot-toast";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 
 import { useState } from "react";
 import MetaTags from "../components/Metatags";
 
 // Maximum number of posts to query per page
-const LIMIT = 1;
+const LIMIT = 10;
 
 export async function getServerSideProps(context) {
 	const postsQuery = firestore
@@ -59,7 +57,7 @@ export default function Home(props) {
 	};
 
 	return (
-		<main>
+		<main className="py-4 px-[10vw] ">
 			<MetaTags
 				title="SoBlo Home Page"
 				description="The Social Blogging site"
@@ -67,7 +65,12 @@ export default function Home(props) {
 			/>
 			<PostFeed posts={posts} admin={false} />
 			{!loading && !postsEnd && (
-				<button onClick={getMorePosts}>Load more</button>
+				<button
+					className="bg-gray-400 text-gray-900 py-4 px-8 flex font-sans font-bold rounded-md my-2 mr-4"
+					onClick={getMorePosts}
+				>
+					Load more
+				</button>
 			)}
 			<Loader show={loading} />
 			{postsEnd && "You've reached the end!"}

@@ -12,19 +12,19 @@ import kebabCase from "lodash.kebabcase";
 import toast from "react-hot-toast";
 
 export default function AdminPostsPage({}) {
+	const [formOpen, setFormOpen] = useState(false);
 	return (
 		<main>
 			<AuthCheck>
 				<Link href="#createNewPost">
 					<button
-						onClick={() => {
-							document.getElementById("createNewPost").style.display = "block";
-						}}
+						className="bg-gray-400 text-gray-900 py-4 px-8 rounded-md mx-2 hover:brightness-90"
+						onClick={() => setFormOpen((state) => !state)}
 					>
-						Create New Post
+						{!formOpen ? "Create New Post" : "Hide Form"}
 					</button>
 				</Link>
-				<CreateNewPost />
+				<CreateNewPost open={formOpen} />
 				<PostList />
 			</AuthCheck>
 		</main>
@@ -43,12 +43,12 @@ function PostList() {
 
 	return (
 		<>
-			<h1>Manage your posts</h1>
+			<h1 className="text-4xl m-4">Manage your posts</h1>
 			<PostFeed posts={posts} admin />
 		</>
 	);
 }
-function CreateNewPost() {
+function CreateNewPost(props) {
 	const router = useRouter();
 	const { username } = useContext(UserContext);
 	const [title, setTitle] = useState("");
@@ -87,39 +87,28 @@ function CreateNewPost() {
 		router.push(`/admin/${slug}`);
 	};
 
-	return (
-		<form
-			onSubmit={createPost}
-			id="createNewPost"
-			style={{
-				backgroundColor: "#b5bdc4",
-				borderRadius: "10px",
-				padding: "10px",
-				display: "none",
-			}}
-		>
-			<input
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-				style={{
-					borderRadius: "10px",
-				}}
-				placeholder="New Post Title"
-			/>
-			<p>
-				<strong>Slug:</strong> {slug}
-			</p>
-			<button type="submit" disabled={!isValid} className="btn-green">
-				Create New Post
-			</button>
-			<button
-				type="button"
-				onClick={() => {
-					document.getElementById("createNewPost").style.display = "none";
-				}}
+	if (props.open) {
+		return (
+			<form
+				onSubmit={createPost}
+				id="createNewPost"
+				className="bg-gray-300 p-3 rounded-lg"
 			>
-				Hide form
-			</button>
-		</form>
-	);
+				<input
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
+					className="rounded-lg"
+					placeholder="New Post Title"
+				/>
+				<p className="font-bold mt-2">Slug: {slug}</p>
+				<button
+					type="submit"
+					disabled={!isValid}
+					className="bg-green-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90 disabled:brightness-75 disabled:cursor-not-allowed"
+				>
+					Create New Post
+				</button>
+			</form>
+		);
+	}
 }
