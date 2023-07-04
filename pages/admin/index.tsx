@@ -24,8 +24,8 @@ export default function AdminPostsPage({}) {
 						Create New Post
 					</button>
 				</Link>
-				<PostList />
 				<CreateNewPost />
+				<PostList />
 			</AuthCheck>
 		</main>
 	);
@@ -60,7 +60,7 @@ function CreateNewPost() {
 	// Create the new post in firestore
 	const createPost = async (e) => {
 		e.preventDefault();
-		const uid = auth.currentUser.uid;
+		const uid = auth.currentUser?.uid;
 		const ref = firestore
 			.collection("users")
 			.doc(uid)
@@ -111,6 +111,14 @@ function CreateNewPost() {
 			</p>
 			<button type="submit" disabled={!isValid} className="btn-green">
 				Create New Post
+			</button>
+			<button
+				type="button"
+				onClick={() => {
+					document.getElementById("createNewPost").style.display = "none";
+				}}
+			>
+				Hide form
 			</button>
 		</form>
 	);
