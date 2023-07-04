@@ -1,4 +1,3 @@
-import styles from "../../styles/Admin.module.css";
 import AuthCheck from "../../components/AuthCheck";
 import PostFeed from "../../components/PostFeed";
 import { UserContext } from "../../lib/context";
@@ -17,7 +16,13 @@ export default function AdminPostsPage({}) {
 		<main>
 			<AuthCheck>
 				<Link href="#createNewPost">
-					<button>Create New Post</button>
+					<button
+						onClick={() => {
+							document.getElementById("createNewPost").style.display = "block";
+						}}
+					>
+						Create New Post
+					</button>
 				</Link>
 				<PostList />
 				<CreateNewPost />
@@ -83,10 +88,22 @@ function CreateNewPost() {
 	};
 
 	return (
-		<form onSubmit={createPost} id="createNewPost">
+		<form
+			onSubmit={createPost}
+			id="createNewPost"
+			style={{
+				backgroundColor: "#b5bdc4",
+				borderRadius: "10px",
+				padding: "10px",
+				display: "none",
+			}}
+		>
 			<input
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
+				style={{
+					borderRadius: "10px",
+				}}
 				placeholder="New Post Title"
 			/>
 			<p>

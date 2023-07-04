@@ -60,6 +60,7 @@ function PostManager() {
 						<Link href={`/${post.username}/${post.slug}`}>
 							<button className="btn-blue">Live view</button>
 						</Link>
+						<ImageUploader />
 					</aside>
 				</>
 			)}
@@ -103,7 +104,15 @@ function PostForm({ defaultValues, postRef, preview }) {
 			)}
 
 			<div className={preview ? styles.hidden : styles.controls}>
-				<ImageUploader />
+				<fieldset>
+					<input
+						className={styles.checkbox}
+						type="checkbox"
+						{...register("published")}
+					/>
+					<label> Published</label>
+				</fieldset>
+
 				<textarea
 					{...register("content", {
 						maxLength: { value: 20000, message: "content is too long" },
@@ -115,14 +124,18 @@ function PostForm({ defaultValues, postRef, preview }) {
 					<Image
 						src="/markdown.svg"
 						alt="markdown logo"
-						height={30}
-						width={30}
+						height={16}
+						width={16}
 					/>
 					<span>
 						<strong>
 							{" "}
 							via{" "}
-							<Link href="https://commonmark.org/help/" target="_blank">
+							<Link
+								href="https://commonmark.org/help/"
+								target="_blank"
+								className="text-info"
+							>
 								CommonMark
 							</Link>
 						</strong>
@@ -132,15 +145,6 @@ function PostForm({ defaultValues, postRef, preview }) {
 				{errors.content && (
 					<p className="text-danger">{errors.content.message.toString()}</p>
 				)}
-
-				<fieldset>
-					<input
-						className={styles.checkbox}
-						type="checkbox"
-						{...register("published")}
-					/>
-					<label>Published</label>
-				</fieldset>
 
 				<button
 					type="submit"

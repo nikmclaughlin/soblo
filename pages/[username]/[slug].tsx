@@ -1,6 +1,11 @@
 import styles from "../../styles/Post.module.css";
 
-import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
+import {
+	firestore,
+	getUserWithUsername,
+	postToJSON,
+	auth,
+} from "../../lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import PostContent from "../../components/PostContent";
 import MetaTags from "../../components/Metatags";
@@ -70,6 +75,13 @@ export default function PostPage(props) {
 					}
 				>
 					<HeartButton postRef={postRef} />
+					{auth.currentUser?.uid == post.uid && (
+						<Link href={`/admin/${post.slug}`}>
+							<h3>
+								<button className="btn-blue">Edit</button>
+							</h3>
+						</Link>
+					)}
 				</AuthCheck>
 			</aside>
 		</main>
