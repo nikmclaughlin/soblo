@@ -13,6 +13,7 @@ Write some posts and invite your friends!
 
 - [Next.js](https://nextjs.org)
 - [Firebase](https://firebase.google.com)
+- [Tailwind](https://tailwindcss.com/)
 - [And more!](https://github.com/nikmclaughlin/soblo/blob/main/package.json)
 
 🚀 Demo deployed on [Vercel](https://vercel.com): [soblo.vercel.app](https://soblo.vercel.app)
