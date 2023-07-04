@@ -1,11 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
+	/* gray-100 */
   --color-bg: #eef0f1;
+	/* gray-900 */
   --color-text: #08090a;
+	/* indigo-500 */
   --color-blue: #3b49df;
+	/* red-500 */
   --color-red: #df3b3b;
+	/* green-500 */
   --color-green: #3bdf72;
+	/* gray-400 */
   --color-gray: #b5bdc4;
 }
 html,
@@ -24,9 +34,11 @@ main {
   padding: 1rem 10vw;
 }
 
+/* text-4xl m-4 */
 h1 { font-size: 2rem; }
+/* text-2xl  */
 h2 { font-size: 1.5rem; }
-h2 { font-size: 1.25rem; }
+h3 { font-size: 1.25rem; }
 
 a {
   color: inherit;
@@ -97,6 +109,7 @@ code {
 }
 
 /* Buttons */
+/* py-4 px-8 rounded-md mx-2 hover:brightness-90 */
 
 .btn, button {
   background-color: var(--color-gray);
@@ -122,10 +135,11 @@ code {
   }
 }
 
-
 button:hover {
   filter: brightness(90%);
 }
+
+/* disabled:brightness-75 disabled:cursor-not-allowed */
 
 button:disabled,
 button[disabled]{
