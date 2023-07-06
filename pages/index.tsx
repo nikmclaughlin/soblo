@@ -57,7 +57,7 @@ export default function Home(props) {
 	};
 
 	return (
-		<main className="py-4 px-[10vw] ">
+		<main className="py-4 px-[10vw]">
 			<MetaTags
 				title="SoBlo Home Page"
 				description="The Social Blogging site"

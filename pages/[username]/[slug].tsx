@@ -56,29 +56,29 @@ export default function PostPage(props) {
 	const post = realtimePost || props.post;
 
 	return (
-		<main className={styles.container}>
+		<main className="min-h-screen flex py-4 px-[10vw]">
 			<MetaTags title={post?.title} path={`/${post.username}/${post.slug}`} />
-			<section>
+			<section className="w-4/5 mr-4">
 				<PostContent post={post} />
 			</section>
 
-			<aside className="card">
-				<p>
-					<strong>{post.heartCount || 0} 💖</strong>
+			<aside className="items-center flex flex-col w-1/5 min-w-[225px] p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg text-center sticky top-20 h-0 min-h-[300px]">
+				<p className="font-bold">
+					{post.heartCount || 0} 💖
 				</p>
 
 				<AuthCheck
 					fallback={
 						<Link href="/enter">
-							<button>💖 Sign in</button>
+							<button className="py-4 px-8 rounded-md mx-2 hover:brightness-90">💖 Sign in</button>
 						</Link>
 					}
 				>
 					<HeartButton postRef={postRef} />
 					{auth.currentUser?.uid == post.uid && (
 						<Link href={`/admin/${post.slug}`}>
-							<h3>
-								<button className="btn-blue">Edit</button>
+							<h3 className="text-xl">
+								<button className="bg-indigo-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90">Edit</button>
 							</h3>
 						</Link>
 					)}
