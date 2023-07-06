@@ -16,7 +16,7 @@ import { DocumentReference } from "firebase/firestore";
 
 export default function AdminPostEdit({}) {
 	return (
-		<main>
+		<main className="py-4 px-[10vw]">
 			<AuthCheck>
 				<PostManager />
 			</AuthCheck>
@@ -38,11 +38,11 @@ function PostManager() {
 	const [post] = useDocumentDataOnce(postRef as any);
 
 	return (
-		<main className={styles.container}>
+		<main className="py-4 px-[10vw] flex min-h-screen">
 			{post && (
 				<>
-					<section>
-						<h1>{post.title}</h1>
+					<section className="w-[60vw] mr-4">
+						<h1 className="text-4xl my-4">{post.title}</h1>
 						<p>ID: {post.slug}</p>
 
 						<PostForm
@@ -52,13 +52,18 @@ function PostManager() {
 						/>
 					</section>
 
-					<aside>
-						<h3>Tools</h3>
-						<button onClick={() => setPreview(!preview)}>
+					<aside className="flex flex-col w-1/5 min-w-[250px] h-0 min-h-[200px] text-center sticky top-20 ">
+						<h3 className="text-xl">Tools</h3>
+						<button
+							onClick={() => setPreview(!preview)}
+							className="py-4 px-8 rounded-md mx-2 hover:brightness-90"
+						>
 							{preview ? "Edit" : "Preview"}
 						</button>
 						<Link href={`/${post.username}/${post.slug}`}>
-							<button className="btn-blue">Live view</button>
+							<button className="bg-indigo-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90 ">
+								Live view
+							</button>
 						</Link>
 						<ImageUploader />
 					</aside>

@@ -38,17 +38,18 @@ export default function ImageUploader() {
 	};
 
 	return (
-		<div className="box">
+		<div className="flex justify-between">
 			<Loader show={uploading} />
-			{uploading && <h3>{progress}%</h3>}
+			{uploading && <h3 className="text-xl">{progress}%</h3>}
 
 			{!uploading && (
 				<>
-					<label className="btn">
+					<label className="py-4 px-8 rounded-md mx-2 hover:brightness-90 bg-gray-400 font-bold cursor-pointer">
 						🖼️ Add a pic
 						<input
 							type="file"
 							onChange={uploadFile}
+							className="hidden"
 							accept="image/x-png, image/gif, image/jpeg, image/webp, image/avif, image/apng"
 						/>
 					</label>
@@ -56,7 +57,7 @@ export default function ImageUploader() {
 			)}
 
 			{downloadURL && (
-				<code className="upload-snippet">{`![alt](${downloadURL})`}</code>
+				<code className="w-3/4 ml-auto bg-white overflow-x-scroll p-1 my-1">{`![alt](${downloadURL})`}</code>
 			)}
 		</div>
 	);
