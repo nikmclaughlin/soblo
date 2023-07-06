@@ -8,8 +8,8 @@ export default function PostContent({ post }) {
 			: post.createdAt.toDate();
 
 	return (
-		<div className="card">
-			<h1>{post?.title}</h1>
+		<div className="p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg">
+			<h1 className="text-4xl m-4">{post?.title}</h1>
 			<span className="text-sm">
 				Written by{" "}
 				<Link href={`/${post.username}`} className="text-info">

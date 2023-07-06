@@ -181,7 +181,7 @@ button.btn-logo {
 }
 
 /* Cards */
-
+/* p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg*/
 .card {
   padding: 2rem;
   margin: 1rem 0;

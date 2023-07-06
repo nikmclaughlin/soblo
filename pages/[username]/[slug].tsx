@@ -62,15 +62,15 @@ export default function PostPage(props) {
 				<PostContent post={post} />
 			</section>
 
-			<aside className="items-center flex flex-col w-1/5 min-w-[225px] p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg text-center sticky top-20 h-0 min-h-[300px]">
-				<p className="font-bold">
-					{post.heartCount || 0} 💖
-				</p>
+			<aside className="items-center flex flex-col w-1/5 min-w-[225px] p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg text-center sticky top-20 h-0 min-h-[250px]">
+				<p className="font-bold">{post.heartCount || 0} 💖</p>
 
 				<AuthCheck
 					fallback={
 						<Link href="/enter">
-							<button className="py-4 px-8 rounded-md mx-2 hover:brightness-90">💖 Sign in</button>
+							<button className="py-4 px-8 rounded-md mx-2 hover:brightness-90">
+								💖 Sign in
+							</button>
 						</Link>
 					}
 				>
@@ -78,7 +78,9 @@ export default function PostPage(props) {
 					{auth.currentUser?.uid == post.uid && (
 						<Link href={`/admin/${post.slug}`}>
 							<h3 className="text-xl">
-								<button className="bg-indigo-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90">Edit</button>
+								<button className="bg-indigo-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90">
+									Edit
+								</button>
 							</h3>
 						</Link>
 					)}
