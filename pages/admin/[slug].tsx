@@ -103,15 +103,15 @@ function PostForm({ defaultValues, postRef, preview }) {
 	return (
 		<form onSubmit={handleSubmit(updatePost)}>
 			{preview && (
-				<div className="card">
+				<div className="p-8 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg">
 					<ReactMarkdown>{watch("content")}</ReactMarkdown>
 				</div>
 			)}
 
-			<div className={preview ? styles.hidden : styles.controls}>
-				<fieldset>
+			<div className={preview ? "hidden" : "flex flex-col"}>
+				<fieldset className="border-none py-4 text-lg">
 					<input
-						className={styles.checkbox}
+						className="inline outline-none border-none text-2xl w-auto py-2 px-3"
 						type="checkbox"
 						{...register("published")}
 					/>
@@ -119,18 +119,19 @@ function PostForm({ defaultValues, postRef, preview }) {
 				</fieldset>
 
 				<textarea
+					className="h-[60vh] border-none outline-none p-2 text-lg rounded-md"
 					{...register("content", {
 						maxLength: { value: 20000, message: "content is too long" },
 						minLength: { value: 10, message: "content is too short" },
 						required: { value: true, message: "content is required" },
 					})}
 				></textarea>
-				<div>
+				<div className="flex space-x-1">
 					<Image
 						src="/markdown.svg"
 						alt="markdown logo"
-						height={16}
-						width={16}
+						height={32}
+						width={32}
 					/>
 					<span>
 						<strong>
@@ -148,12 +149,14 @@ function PostForm({ defaultValues, postRef, preview }) {
 				</div>
 
 				{errors.content && (
-					<p className="text-danger">{errors.content.message.toString()}</p>
+					<p className="font-bold text-red-500">
+						{errors.content.message.toString()}
+					</p>
 				)}
 
 				<button
 					type="submit"
-					className="btn-green"
+					className="bg-green-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90 disabled:brightness-75 disabled:cursor-not-allowed"
 					disabled={!isDirty || !isValid}
 				>
 					Save Changes

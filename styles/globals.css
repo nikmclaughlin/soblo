@@ -53,6 +53,7 @@ a {
 
 img {max-width: 100%;}
 
+/* inline-block outline-none border-none text-2xl w-full py-2 px-3 */
 input { 
   display: inline-block; 
   outline: none;
