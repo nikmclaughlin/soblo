@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function UserProfile({ user }) {
 	return (
-		<div className="box-center">
+		<div className="flex flex-col content-center text-center">
 			<Image
-				className="card-img-center"
+				className="m-auto rounded-full"
 				src={user?.photoURL}
 				alt="user's profile pic"
 				width={125}
@@ -13,7 +13,7 @@ export default function UserProfile({ user }) {
 			<p>
 				<i>@{user?.username}</i>
 			</p>
-			<h1>{user?.displayName}</h1>
+			<h1 className="text-4xl m-4">{user?.displayName}</h1>
 		</div>
 	);
 }

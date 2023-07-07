@@ -35,7 +35,7 @@ export async function getServerSideProps({ query }) {
 
 export default function UserProfilePage({ user, posts }) {
 	return (
-		<main>
+		<main className="py-4 px-[10vw]">
 			<MetaTags
 				title={`${user.username}'s Profile`}
 				description={`SoBlo profile for ${user.username}`}
@@ -43,7 +43,7 @@ export default function UserProfilePage({ user, posts }) {
 				path={`/${user.username}`}
 			/>
 			<UserProfile user={user} />
-			<PostFeed posts={posts} admin />
+			<PostFeed posts={posts} admin={false} />
 		</main>
 	);
 }
