@@ -16,7 +16,7 @@ export default function EnterPage({}) {
 	 * 3: user is signed in with username - display SIgnOutButton
 	 */
 	return (
-		<main>
+		<main className="py-4 px-[10vw] w-screen flex justify-center">
 			<MetaTags
 				title="SoBlo login"
 				description="Sign in to SoBlo"
@@ -40,15 +40,31 @@ function SignInButton() {
 		await auth.signInWithPopup(googleAuthProvider);
 	};
 	return (
-		<button className="btn-google" onClick={signInWithGoogle}>
-			<Image src="/google.png" alt="Google Logo" width={100} height={30} /> Sign
-			in with Google
+		<button
+			className="bg-white text-gray-900 py-4 px-8 rounded-md mx-2 hover:brightness-90"
+			onClick={signInWithGoogle}
+		>
+			<Image
+				src="/google.png"
+				alt="Google Logo"
+				width={32}
+				height={32}
+				className="mr-2"
+			/>{" "}
+			Sign in with Google
 		</button>
 	);
 }
 
 function SignOutButton() {
-	return <button onClick={() => auth.signOut()}>Sign Out</button>;
+	return (
+		<button
+			onClick={() => auth.signOut()}
+			className="py-4 px-8 rounded-md mx-2 hover:brightness-90"
+		>
+			Sign Out
+		</button>
+	);
 }
 
 function UsernameForm() {
@@ -112,23 +128,30 @@ function UsernameForm() {
 
 	return (
 		!username && (
-			<section>
-				<h3>Choose Username</h3>
-				<form onSubmit={onSubmit}>
+			<section className="p-6 my-4 bg-white border-[1px] border-solid border-gray-400 rounded-lg">
+				<h3 className="text-xl">Choose Username</h3>
+				<form onSubmit={onSubmit} className="flex flex-col">
 					<input
 						name="username"
 						placeholder="my name"
 						value={formValue}
 						onChange={onChange}
+						className="inline-block bg-gray-100 text-xl w-full py-2 px-3"
 					/>
 
-					<UsernameMessage
-						username={formValue}
-						isValid={isValid}
-						loading={loading}
-					/>
+					<div className="self-center">
+						<UsernameMessage
+							username={formValue}
+							isValid={isValid}
+							loading={loading}
+						/>
+					</div>
 
-					<button type="submit" className="btn-green" disabled={!isValid}>
+					<button
+						type="submit"
+						className="bg-green-500 text-white py-4 px-8 rounded-md mx-2 hover:brightness-90 disabled:brightness-75 disabled:cursor-not-allowed"
+						disabled={!isValid}
+					>
 						Choose
 					</button>
 
@@ -149,9 +172,15 @@ function UsernameForm() {
 		if (loading) {
 			return <Loader show={loading} />;
 		} else if (isValid) {
-			return <p className="text-success">{username} is available!</p>;
+			return (
+				<p className="font-bold text-green-500">{username} is available!</p>
+			);
 		} else if (username && !isValid) {
-			return <p className="text-danger">That username is already taken!</p>;
+			return (
+				<p className="font-bold text-red-500">
+					That username is already taken!
+				</p>
+			);
 		} else {
 			return <p></p>;
 		}
